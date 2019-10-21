@@ -2,6 +2,52 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet' href='/stylesheets/style.css')
+    link(rel="stylesheet", href="/stylesheets/bootstrap.min.css")
+    script(src="/javascripts/jquery-3.3.1.slim.min.js")
   body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light 
+      a.navbar-brand(href='#')
+        img(src="/images/36696-cassiopeia-64x64-1.png" weight="64" height="64")
+      a.navbar-brand#brand(href='#') Express News
+        
+      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link(href='#')
+              | Home 
+              span.sr-only (current)
+          li.nav-item
+            a.nav-link(href='#') Xã hội
+          li.nav-item
+            a.nav-link(href='#') Đời sống
+          li.nav-item
+            a.nav-link(href='#') Thế giới
+          li.nav-item
+            a.nav-link(href='#') Thời tiết
+          li.nav-item
+            a.nav-link(href='#') Chính trị
+          li.nav-item
+            a.nav-link(href='#') Giáo dục
+          li.nav-item
+            a.nav-link(href='#') Khoa học
+          li.nav-item
+            a.nav-link(href='#') Du lịch
+          li.nav-item
+            a.nav-link(href='#') Pháp luật
+          li.nav-item
+            a.nav-link(href='#') Đời sống
+        button.btn.btn-light Đăng nhập
+    
+          
+          
+        
+
+
+
+
+    script(src="/javascripts/bootstrap.min.js")
+    script(src="/javascripts/popper.min.js")
     block content

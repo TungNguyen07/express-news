@@ -7,39 +7,39 @@ html
     script(src="/javascripts/jquery-3.3.1.slim.min.js")
   body
     nav.navbar.navbar-expand-lg.navbar-light.bg-light 
-      a.navbar-brand(href='#')
+      a.navbar-brand(href='/')
         img(src="/images/36696-cassiopeia-64x64-1.png" weight="64" height="64")
-      a.navbar-brand#brand(href='#') Express News
+      a.navbar-brand#brand(href='/') Express News
         
       button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
         span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
         ul.navbar-nav.mr-auto
           li.nav-item.active
-            a.nav-link(href='#')
-              | Home 
+            a.nav-link(href='/')
+              | Trang chủ 
               span.sr-only (current)
           li.nav-item
-            a.nav-link(href='#') Xã hội
+            a.nav-link(href='/xahoi') Xã hội
           li.nav-item
-            a.nav-link(href='#') Đời sống
+            a.nav-link(href='/doisong') Đời sống
           li.nav-item
-            a.nav-link(href='#') Thế giới
+            a.nav-link(href='/thegioi') Thế giới
           li.nav-item
-            a.nav-link(href='#') Thời tiết
+            a.nav-link(href='/thoitiet') Thời tiết
           li.nav-item
-            a.nav-link(href='#') Chính trị
+            a.nav-link(href='/chinhtri') Chính trị
           li.nav-item
-            a.nav-link(href='#') Giáo dục
+            a.nav-link(href='/giaoduc') Giáo dục
           li.nav-item
-            a.nav-link(href='#') Khoa học
+            a.nav-link(href='/khoahoc') Khoa học
           li.nav-item
-            a.nav-link(href='#') Du lịch
+            a.nav-link(href='/dulich') Du lịch
           li.nav-item
-            a.nav-link(href='#') Pháp luật
+            a.nav-link(href='/phapluat') Pháp luật
           li.nav-item
-            a.nav-link(href='#') Đời sống
-        button.btn.btn-light Đăng nhập
+            a.nav-link(href='/congnghe') Công nghệ
+        a.button.btn.btn-light(href="/users/login") Đăng nhập
     
           
           
@@ -51,3 +51,29 @@ html
     script(src="/javascripts/bootstrap.min.js")
     script(src="/javascripts/popper.min.js")
     block content
+    div.footer
+      footer
+        div
+          ul
+            li
+              h1 CHĂM SÓC KHÁCH HÀNG
+              hr
+              p
+                a(href="/guaranteepolicy") Chính sách bảo hành
+              p
+                a(href="/installmentpurchase") Mua hàng trả góp
+              a(href='/returnandexchangepolicy') Chính sách đổi trả
+              br
+            li
+              h1 LIÊN HỆ NHANH
+              hr
+              p Mua hàng: 0123456789 (Miễn phí) 
+              p Khiếu nại - Góp ý: 0987654321 (Miễn phí)
+              p
+                | Email: 
+                a(href='mailto:abcxyz@gmail.com' target="top") abcxyz@gmail.com
+            li
+              h1 TRỤ SỞ CHÍNH
+              hr
+              p 18 Ung Văn Khiêm, Phường Đông Xuyên, Thành phố; Long Xuyên, An Giang
+

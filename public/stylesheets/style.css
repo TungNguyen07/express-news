@@ -1,5 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 
 a.navbar-brand{
@@ -13,5 +14,63 @@ a.navbar-brand#brand{
 
 a.nav-link{
   font-size: 20px;
+}
+
+div#signup{
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-bottom: 10%;
+}
+
+.footer{
+  background-color:black;
+  float: none;
+  width: 100%;
+  padding:10px;
+  position: absolute;
+  margin-top: 10%;
+}
+
+.footer footer{
+  color:white;   
+}
+
+.footer div{
+  margin-left: 5%;
+}
+
+.footer div ul{
+  width: 100%;
+}
+
+.footer div ul li{
+  display: inline-block;
+  width: 27%;
+  margin-right: 5%;
+  float: left;
+}
+
+.footer div ul li h1{
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.footer div ul li a{
+  color: white;
+  text-decoration: none;
+  padding-bottom: 3px;
+}
+
+.footer div ul li a:hover{
+  text-decoration: underline;
+}
+
+.footer div ul li hr{
+  border: 0.5px dotted rgb(150, 150, 150) ;
+}
+
+.footer div ul li p{
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 

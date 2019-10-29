@@ -6,7 +6,6 @@ let userSchema = mongoose.Schema({
     phone: String,
     email: String,
     name: String,
-    avatar: String,
     permission: {type: Number, default: 0},
     },
     {versionKey:false})

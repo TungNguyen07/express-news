@@ -15,3 +15,28 @@ module.exports.postCreateUser = function(req, res, next){
     res.redirect('login');
 }
 
+module.exports.loginUser = async function(req, res, next){
+    let hashedPassword = md5(req.body.password);
+    let user = await userModel.find({username: req.body.username, 
+        password: hashedPassword});
+    if(!user.length){
+        res.render('users/login', {
+            errors: ["Tài khoản hoặc mật khẩu không chính xác!"],
+            user: req.body,
+        });
+        return;
+    }
+
+    res.cookie('userId', user._id, {
+        signed: true
+    });
+    res.render('index', {
+        user: user
+    });
+}
+
+module.exports.logout = function(req, res, next){
+    res.clearCookie('userId');
+    res.redirect('/');
+}
+

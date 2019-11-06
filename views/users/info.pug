@@ -1,0 +1,18 @@
+extends ../layout 
+
+block content
+    h1(style="text-align: center;") Personal Infomation
+    if errors
+        each error in errors
+            .alert.alert-danger= error
+    form(method="POST" enctype="application/json")
+        .form-group.row
+            lable(for="name") Name 
+            input#name.form-control.mt-2(type="text" name="name" value=values.name)
+        .form-group.row
+            lable(for="email") Email
+            input#email.form-control.mt-2(type="text" name="email" value=values.email)
+        .form-group.row
+            lable(for="phone") Phone
+            input#phone.form-control.mt-2(type="text" name="phone" value=values.phone)
+        button.btn.btn-primary Save

@@ -1,25 +1,25 @@
 extends ../layout
 
 block content
-    div#signup
+    div#sign
         h1(style="text-align: center;") Sign up
         if errors
             each error in errors
                 .alert.alert-danger= error
         form(action="/users/signup" method="POST" enctype="application/json")
             .form-group.row
-                lable(for="name") Tên 
-                input#name.form-control.mt-2(type="text" name="name")
+                lable(for="name") Name 
+                input#name.form-control.mt-2(type="text" name="name" value=values ? values.name : '')
             .form-group.row
                 lable(for="email") Email
-                input#email.form-control.mt-2(type="text" name="email")
+                input#email.form-control.mt-2(type="text" name="email" value=values ? values.email : '')
             .form-group.row
-                lable(for="username") Tên đăng nhập 
-                input#username.form-control.mt-2(type="text" name="username")
+                lable(for="username") Username
+                input#username.form-control.mt-2(type="text" name="username" value=values ? values.username : '')
             .form-group.row
-                lable(for="password") Mật khẩu
+                lable(for="password") Password
                 input#password.form-control.mt-2(type="password" name="password")
             .form-group.row
-                lable(for="phone") Phone
-                input#phone.form-control.mt-2(type="text" name="phone")
-            button.btn.btn-primary Đăng ký
+                lable(for="phone") Numberphone
+                input#phone.form-control.mt-2(type="text" name="phone" value=values ? values.phone : '')
+            button.btn.btn-primary Sign up

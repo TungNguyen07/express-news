@@ -1,16 +1,17 @@
 extends ../layout
 
 block content
-	h1(style="text-align: center;") Login
-	if errors
-		each error in errors
-			.alert.alert-danger= error
-	form(method="POST" style="padding-left: 25%; padding-right: 25%;")
-		.form-group.row
-			lable(for="username") Username 
-			input#username.form-control.mt-2(type="text" name="username" value=user ? user.username : "")
-		.form-group.row
-			lable(for="password") Password
-			input#password.form-control.mt-2(type="password" name="password")
-		button.btn.btn-primary.mt-2 Đăng nhập
-		a.btn.btn-primary.mt-2.ml-2(href='/users/signup') Đăng ký
+	div#sign
+		h1(style="text-align: center;") Login
+		if errors
+			each error in errors
+				.alert.alert-danger= error
+		form(method="POST")
+			.form-group.row
+				lable(for="username") Username 
+				input#username.form-control.mt-2(type="text" name="username" value=values ? values.username : "")
+			.form-group.row
+				lable(for="password") Password
+				input#password.form-control.mt-2(type="password" name="password")
+			button.btn.btn-primary.mt-2 Log in
+			a.btn.btn-primary.mt-2.ml-2(href='/users/signup') Sign up

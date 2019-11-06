@@ -4,22 +4,37 @@ body {
 }
 
 a.navbar-brand{
-  margin-left: 5%;
+  margin-left: 3%;
 }
 
 a.navbar-brand#brand{
   margin-left: 0%;
-  font-size: 25px;
+  font-size: 23px;
 }
 
 a.nav-link{
   font-size: 20px;
 }
 
-div#signup{
+div#sign{
   margin-left: 25%;
   margin-right: 25%;
   margin-bottom: 10%;
+}
+
+table.table{
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+form {
+  padding-left: 25%;
+  padding-right: 25%;
+}
+
+textarea{
+  width: 100%;
 }
 
 .footer{
@@ -44,10 +59,10 @@ div#signup{
 }
 
 .footer div ul li{
+  float: left;
   display: inline-block;
   width: 27%;
   margin-right: 5%;
-  float: left;
 }
 
 .footer div ul li h1{

@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+    h1(style="text-align: center;") List Users
+    .d-flex.align-items-center
+        form.ml-auto.d-flex(action="/users/search" method="GET")
+            input.form-control(type="text" name="q" class="mr-2" value=q ? q : "")
+            button.btn.btn-primary.mb-2 Search
+    if errors
+        each error in errors
+            .alert.alert-danger(style="text-align: center; font-size: 20px;")= error
+    table.table
+        tr
+            th Name
+            th Phone
+            th Email
+            th Username
+            th Permission
+            th(style="padding-left: 5%") Action
+
+        each user in users
+            tr
+                td= user.name
+                td= user.phone
+                td= user.email
+                td= user.username
+                td
+                    input(type="number", name="permission" min="0" max="2" value=user.permission)
+                td
+                    a.btn.btn-primary.mr-2(href="/users/user-info/"+ user.id) View
+                    a.btn.btn-primary.ml-2(href="/users/delete/"+user.id) Delete

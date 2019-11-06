@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const loginValidate = require('../middleware/validateUserLogin');
+const validateLogin = require('../middleware/validateLogin');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('users/index', { title: 'Express' });
+router.get('/',function(req, res, next) {
+  res.render('layout', { 
+    title: 'Express',
+   
+  });
 });
 
 

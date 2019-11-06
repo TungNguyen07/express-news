@@ -1,0 +1,10 @@
+extends ../layout
+    
+block content
+    script(src="ckeditor/ckeditor.js")
+    h1(style="text-align: center;") Make your new post
+    form(method="POST" enctype="multipart/form-data")
+        textarea(name="ckeditor")
+        button.btn.btn-primary Post
+        script
+            CKEDITOR.replace('ckeditor')

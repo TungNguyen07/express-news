@@ -45,12 +45,12 @@ html
               .dropdown-menu(aria-labelledby='dropdownMenuButton')
                 if user.permission > 0
                   if user.permission == 2
-                    a.dropdown-item(href='list-users') Manage Users
-                    a.dropdown-item(href='/users/write-news') Post
+                    a.dropdown-item(href='/users/list-users') Manage Users
+                    a.dropdown-item(href='/post/write-news') Post
                   else if user.permission == 1
-                    a.dropdown-item(href='/users/write-news') Post
+                    a.dropdown-item(href='/post/write-news') Post
                 a.dropdown-item(href='/users/info/'+user._id) Personal infomation
-                a.dropdown-item(href='/users/change-password/'+user._id) Change password
+                a.dropdown-item(href='/users/info/change-password/'+user._id) Change password
                 a.dropdown-item(href='/users/logout') Logout
           else
             a.button.btn.btn-light.ml-3(href="/users/login") Log in

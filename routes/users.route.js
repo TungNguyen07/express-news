@@ -30,6 +30,8 @@ router.get('/list-users', /*validateInfomation.getPermission,*/ userController.l
 
 router.get('/search', userController.searchUsers);
 
-router.get('/user-info/:id', userController.seeUserInfo);
+router.post('/change-permission/:id', userController.upgradePermission);
+
+router.get('/delete/:id', userController.deleteUser);
 
 module.exports = router;

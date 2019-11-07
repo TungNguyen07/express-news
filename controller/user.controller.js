@@ -85,7 +85,7 @@ module.exports.searchUsers = async function(req, res){
     if(query)
         users =await userModel.find({name: {$regex: new RegExp(query)}});
     else
-        users = await userModel.find({});
+        res.redirect('/users/list-users');
     let errors = [];
     if(!users.length)
         errors.push('Not found!');
@@ -96,12 +96,26 @@ module.exports.searchUsers = async function(req, res){
     });
 }
 
-//See user infomation
-module.exports.seeUserInfo = async function(req, res){
+//Upgrade permission
+module.exports.upgradePermission = function(req, res){
     let id = req.params.id;
-    let user = await userModel.find({_id: id});
-    res.render('users/viewInfoUser',{
-        user: user[0]
+    let permission = req.body.permission;
+    let condition = {_id: id};
+    let query = {$set: {permission: permission}};
+    userModel.updateOne(condition,query, function(err, res){
+        if(err) throw err;
+        console.log("Change permission sucessfully!");
     });
-    console.log(user);
+    res.redirect('/users/list-users');
+} 
+
+//Delete user
+module.exports.deleteUser = function(req, res){
+    let id = req.params.id;
+    let condition = {_id: id};
+    userModel.remove(condition, function(err, res){
+        if(err) throw err;
+        console.log("Delete user sucessfully!");
+    });
+    res.redirect('/users/list-users');
 }

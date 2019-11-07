@@ -3,10 +3,10 @@ const router = express.Router();
 const validateLogin = require('../middleware/validateLogin');
 
 /* GET home page. */
-router.get('/',function(req, res, next) {
+router.get('/',validateLogin.checkCookie, function(req, res, next) {
+  console.log(res.locals.user);
   res.render('layout', { 
-    title: 'Express',
-   
+    title: 'Express News'
   });
 });
 

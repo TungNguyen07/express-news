@@ -8,17 +8,18 @@ const validateLogin = require('../middleware/validateLogin');
 router.get('/', function(req, res, next) {
   res.send();
 });
-router.get('/login', userController.login)
 
 router.get('/signup', userController.create);
 
 router.post('/signup',validateInfomation.create, userController.postCreateUser);
 
+router.get('/login', userController.login);
+
 router.post('/login',validateLogin.Login, userController.loginUser);
 
 router.get('/logout', userController.logout);
 
-router.get('/info/:id', userController.info)
+router.get('/info/:id', userController.info);
 
 router.post('/info/:id',validateInfomation.editInfo, userController.changeInfo)
 

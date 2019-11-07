@@ -11,6 +11,8 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users.route');
 const postRouter = require('./routes/post.route');
 
+const checkCookie = require('./middleware/validateLogin');
+
 const app = express();
 
 
@@ -28,8 +30,8 @@ app.use(cookieParser('U64dgahG1'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/post', postRouter);
+app.use('/users',checkCookie.checkCookie, usersRouter);
+app.use('/post',checkCookie.checkCookie, postRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

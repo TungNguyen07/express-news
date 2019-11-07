@@ -12,5 +12,17 @@ module.exports.Login = async function(req, res, next){
         });
         return;
     }
+    // res.locals.user = user[0];
+    // console.log(res.locals.user);
+    next();
+}
+
+module.exports.checkCookie = async function(req, res, next){
+    if(req.signedCookies.userId){
+        let user = await userModel.find({_id: req.signedCookies.userId});
+        res.locals.user = user[0];
+    }
+    else
+        res.locals.user = null;
     next();
 }

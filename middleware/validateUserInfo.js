@@ -4,7 +4,7 @@ const md5 = require('md5');
 module.exports.create = async function(req, res, next){
     let errors = [];
     let usedUsername = await userModel.find({username: req.body.username});
-    let usedEmail = await userModel.find({email: email});
+    let usedEmail = await userModel.find({email: req.body.email});
     if(!req.body.name)
         errors.push("Name is required!");
     if(!req.body.email)
@@ -13,10 +13,12 @@ module.exports.create = async function(req, res, next){
         errors.push('Email is not available!');
     if(!req.body.username)
         errors.push("Username is required!");
-    if(username.length)
+    if(usedUsername.length)
         errors.push('Username is not available!');
     if(!req.body.password)
         errors.push("Password is required!");
+    if(!req.body.phone)
+        errors.push('Phone is required!');
     if(errors.length){
         res.render('users/signup', {
             errors: errors,

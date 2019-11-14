@@ -4,16 +4,22 @@ body {
 }
 
 a.navbar-brand{
-  margin-left: 3%;
+  margin-left: 5%;
 }
 
 a.navbar-brand#brand{
   margin-left: 0%;
-  font-size: 23px;
+  font-size: xx-large;
 }
 
 a.nav-link{
-  font-size: 19px;
+  font-size: x-large;
+}
+
+
+
+.user{
+  display: inline-block;
 }
 
 div#sign{
@@ -33,12 +39,46 @@ form {
   padding-right: 25%;
 }
 
-textarea{
-  width: 100%;
+.col {
+  font-size: 20px;
+  float: left;
+}
+
+/*id property*/
+form#editor {
+  padding: 10%; 
+  padding-top: 2%;
 }
 
 #permission {
   display: flex;
+}
+
+#title{
+  font-size: xx-large;
+}
+
+#post {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#display {
+  display: flex;
+}
+
+#titleViewMost {
+  font-size: large;
+  font-weight: bold;
+}
+
+.url {
+  color: black;
+}
+
+.url:hover {
+  color: rgb(57, 48, 141);
+  text-decoration: none;
 }
 
 .footer{
@@ -47,7 +87,6 @@ textarea{
   width: 100%;
   padding:10px;
   position: absolute;
-  margin-top: 50%;
 }
 
 .footer footer{
@@ -64,7 +103,7 @@ textarea{
 
 .footer div ul li{
   float: left;
-  display: inline-block;
+  display: block;
   width: 27%;
   margin-right: 5%;
 }

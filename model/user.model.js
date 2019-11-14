@@ -10,6 +10,6 @@ let userSchema = mongoose.Schema({
     },
     {versionKey:false})
 
-let users = mongoose.model('users', userSchema, 'users');
+let users = mongoose.model('users', userSchema);
 
 module.exports = users;

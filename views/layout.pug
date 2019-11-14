@@ -5,6 +5,7 @@ html
     link(rel='stylesheet' href='/stylesheets/style.css')
     link(rel="stylesheet" href="/stylesheets/bootstrap.min.css")
     script(src="/javascripts/jquery-3.3.1.slim.min.js")
+    script(src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js")
   body
     nav.navbar.navbar-expand-lg.navbar-light.bg-light 
       a.navbar-brand(href='/')
@@ -17,35 +18,36 @@ html
         ul.navbar-nav.mr-auto
           li.nav-item.active
             a.nav-link(href='/')
-              | Trang chủ 
+              | Home 
               span.sr-only (current)
           li.nav-item
-            a.nav-link(href='/xahoi') Xã hội
+            a.nav-link(href='/world') World
           li.nav-item
-            a.nav-link(href='/doisong') Đời sống
+            a.nav-link(href='/business') Business
           li.nav-item
-            a.nav-link(href='/thegioi') Thế giới
+            a.nav-link(href='/weather') Weather
           li.nav-item
-            a.nav-link(href='/thoitiet') Thời tiết
+            a.nav-link(href='/politics') Politics
           li.nav-item
-            a.nav-link(href='/chinhtri') Chính trị
+            a.nav-link(href='/education') Education
           li.nav-item
-            a.nav-link(href='/giaoduc') Giáo dục
+            a.nav-link(href='/science') Science
           li.nav-item
-            a.nav-link(href='/khoahoc') Khoa học
+            a.nav-link(href='/travel') Travel
           li.nav-item
-            a.nav-link(href='/dulich') Du lịch
+            a.nav-link(href='/health') Health
           li.nav-item
-            a.nav-link(href='/phapluat') Pháp luật
+            a.nav-link(href='/sport') Sport
           li.nav-item
-            a.nav-link(href='/congnghe') Công nghệ
+            a.nav-link(href='/tech') Tech
           if user
-            .dropdown
+            .dropdown.user
               button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')= user.name
-              .dropdown-menu(aria-labelledby='dropdownMenuButton')
+              .dropdown-menu.dropdown-menu-right(aria-labelledby='dropdownMenuButton')
                 if user.permission > 0
                   if user.permission == 2
                     a.dropdown-item(href='/users/list-users') Manage Users
+                    a.dropdown-item(href='/post/manage-posts') Manage Post
                     a.dropdown-item(href='/post/write-news') Post
                   else if user.permission == 1
                     a.dropdown-item(href='/post/write-news') Post
@@ -53,7 +55,7 @@ html
                 a.dropdown-item(href='/users/info/change-password/'+user._id) Change password
                 a.dropdown-item(href='/users/logout') Logout
           else
-            a.button.btn.btn-light.ml-3(href="/users/login") Log in
+            a.button.btn.btn-light.ml-3.user(href="/users/login") Log in
 
 
 

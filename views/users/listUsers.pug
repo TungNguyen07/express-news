@@ -15,7 +15,7 @@ block content
             th Phone
             th Email
             th Username
-            th(style="padding-left: 5%;") Permission
+            th(style="padding-left: 7%;") Permission
             th Action
 
         each user in users
@@ -26,7 +26,7 @@ block content
                 td= user.username
                 td
                     form#permission(action="/users/change-permission/"+user.id method="POST")
-                        input(type="number" name="permission" max="2" min="0" value=user.permission)
+                        input.form-control(type="number" name="permission" max="2" min="0" value=user.permission)
                         button.btn.btn-primary.ml-2 Save
                 td
                     a.btn.btn-danger.ml-2(href="/users/delete/"+user.id) Delete

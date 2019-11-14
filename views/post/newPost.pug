@@ -1,10 +1,26 @@
 extends ../layout
-    
+
 block content
-    script(src="ckeditor/ckeditor.js")
     h1(style="text-align: center;") Make your new post
-    form(method="POST" enctype="multipart/form-data")
+    form#editor(method="POST" enctype="application/json")
+        .col-4
+            .input-group.mb-3
+                .input-group-prepend
+                    label.input-group-text(for='inputGroupSelect01') Category
+                select#inputGroupSelect01.custom-select
+                    option(selected value='world') World
+                    option(value='business') Business
+                    option(value='weather') Weather
+                    option(value='politics') Politics
+                    option(value='education') Education
+                    option(value='science') Science
+                    option(value='travle') Travel
+                    option(value='health') Health
+                    option(value='sport') Sport
+                    option(value='tech') Tech
+        
+            
         textarea(name="ckeditor")
-        button.btn.btn-primary Post
-        script
-            CKEDITOR.replace('ckeditor')
+        script.
+            CKEDITOR.replace( 'ckeditor',{height: 500});
+        button.btn.btn-primary.mt-2 Post

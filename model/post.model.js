@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 
 let postSchema = mongoose.Schema({
-    categories: String,
-    content: Text,
+    category: String,
+    content: String,
+    title: String,
     author: String,
     created: Date,
+    image: [{data: Buffer, contentType: String}],
     view: {type: Number, default: 0},
     status: {type: Boolean, default: false},
     comment: [{

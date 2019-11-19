@@ -3,7 +3,7 @@ extends ../layout
 block content
     h1(style="text-align: center;") List Users
     .d-flex.align-items-center
-        form.ml-auto.d-flex(action="/users/search" method="GET")
+        form.ml-auto.d-flex.mb-0(action="/users/search" method="GET")
             input.form-control(type="text" name="q" class="mr-2" value=q ? q : "")
             button.btn.btn-primary.mb-2 Search
     if errors

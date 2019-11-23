@@ -6,7 +6,6 @@ let postSchema = mongoose.Schema({
     title: String,
     author: String,
     created: Date,
-    image: [{data: Buffer, contentType: String}],
     view: {type: Number, default: 0},
     status: {type: Boolean, default: false},
     comment: [{

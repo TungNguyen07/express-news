@@ -76,6 +76,7 @@ module.exports.listUsers = async function(req, res){
     res.render('users/listUsers',{
         users: users
     });
+    //console.log(users.length);
 }
 
 //Search Users

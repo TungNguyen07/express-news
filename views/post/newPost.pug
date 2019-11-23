@@ -26,11 +26,10 @@ block content
         textarea#editor(name="editor")
         button.btn.btn-primary.mt-2 Post
         script(type='text/javascript').
-            var editor = new FroalaEditor('#editor', {
-                height: 'auto',
-                imageUploadParam: 'image',
-                imageUploadURL: 'controller/post.controller.js'
-                //saveURL: '/post/write-news'
+            $('#editor').summernote({
+                tabsize: 2,
+                height: 600,
+                lang: 'en'
             });
             var cate = document.getElementById('inputGroupSelect01');
             

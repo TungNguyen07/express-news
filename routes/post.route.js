@@ -1,19 +1,20 @@
 const express = require('express')
 const router = express.Router();
 const postController = require('../controller/post.controller');
-const getImage = require('../middleware/getImage');
+const validatePermiss = require('../middleware/validatePermission');
+const validateAuthor = require('../middleware/validateAuthor');
+const validateContent = require('../middleware/validateEditor');
 
+router.get('/write-news', validateAuthor.checkAuthor, postController.write);
 
-router.get('/write-news', postController.write);
+router.get('/manage-post', validatePermiss.checkPermission, postController.listPost);
 
-router.get('/manage-post', postController.listPost);
+router.post('/write-news', validateAuthor.checkAuthor, validateContent.checkEditor, postController.post);
 
-router.post('/write-news', postController.post);
+router.get('/approve/:id', validatePermiss.checkPermission, postController.approvePost);
 
-router.get('/approve/:id', postController.approvePost);
+router.get('/deny/:id', validatePermiss.checkPermission, postController.denyPost);
 
-router.get('/deny/:id', postController.denyPost);
-
-router.get('/view/:id');
+router.get('/view/:title/:id', postController.view);
 
 module.exports = router;

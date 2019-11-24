@@ -14,8 +14,8 @@ block content
             each item in post
                 tr
                     td
-                        a(href="/view/"+item._id)= item.title
+                        a(href="/post/view/"+item._id)= item.title
                     td= item.status
                     td
-                        a.btn.btn-primary.ml-2(href="/approve/"+item._id)= Approve
-                        a.btn.btn-danger.ml-2(href="/deny/"+item._id)= Deny
+                        a.btn.btn-primary.ml-2(href="/post/approve/"+item._id) Approve
+                        a.btn.btn-danger.ml-2(href="/post/deny/"+item._id) Deny

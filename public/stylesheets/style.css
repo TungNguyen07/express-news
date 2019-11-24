@@ -47,16 +47,13 @@ form {
 
 /*id property*/
 form#postEditor {
-  padding: 10%; 
+  padding: 15%; 
   padding-top: 2%;
+  padding-bottom: 5%;
 }
 
 #permission {
   display: flex;
-}
-
-#title{
-  font-size: xx-large;
 }
 
 #post {
@@ -73,6 +70,20 @@ form#postEditor {
   font-weight: bold;
 }
 
+#view{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#comment {
+  padding-left: 0%;
+  padding-right: 0%;
+}
+
+.title{
+  font-size: xx-large;
+}
+
 .url {
   color: black;
 }
@@ -80,6 +91,10 @@ form#postEditor {
 .url:hover {
   color: rgb(57, 48, 141);
   text-decoration: none;
+}
+
+.card-img{
+  margin: 0.5em;
 }
 
 .footer{

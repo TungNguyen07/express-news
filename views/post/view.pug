@@ -1,0 +1,39 @@
+extends ../layout
+
+block content
+    .card
+        .card-body#view
+            h5.card-title.title= post.title
+            p.card-text!= post.content
+
+            //- .container.col-4#displayMost
+            //-     .card-header.mb-2#titleViewMost View Most
+            //-     each mostItem in most
+            //-         .card.mb-3
+            //-             .row.no-gutters
+            //-                 .col-md-4
+            //-                     img.card-img(src= mostItem.firstImage alt='...')
+            //-                 .col-md-8
+            //-                     .card-body
+            //-                         a.h5.card-title.url(href="")= mostItem.title
+            //-                         p.card-text
+            //-                         | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+            //-                         p.card-text
+            //-                         small.text-muted= mostItem.created
+    .card.mb-3.col-8#post
+        .container-fluid.mb-3#display
+            .container.col-12
+                .row.no-gutters
+                    .card-body
+                        h5.card-title Commment
+                        form.form-group#comment(method='POST')
+                            textarea(name="comment", cols='120', rows="3" style='resize: none')
+                            button.btn.btn-primary(style='display: block') Comment
+                            each cmt in post.comment
+                                h6= cmt.name
+                                p= cmt.content
+                                button.btn.btn.primary Reply
+                                form.form-group#reply(method='POST')
+                                    textarea(name="reply", cols='100', rows="3" style='resize: none')
+                                    button.btn.btn-primary Reply
+                        

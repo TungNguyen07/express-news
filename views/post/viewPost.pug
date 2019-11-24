@@ -2,7 +2,7 @@ extends ../layout
 
 block content
     .card.mb-3#post
-        .card-header.mb-2.col-12#title= active
+        .card-header.mb-2.col-12.title= active
         .container-fluid.mb-3#display
             .container.col-8
                 each item in post
@@ -12,21 +12,22 @@ block content
                                 img.card-img(src= item.firstImage, alt='image')
                             .col-md-8
                                 .card-body
-                                    a.h5.card-title.url(href="")= item.title
+                                    a.h5.card-title.url(href="/post/view/"+item.url+'/'+item._id)= item.title
                                     p.card-text
                                     | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                                     p.card-text
                                     small.text-muted= item.created
             .container.col-4#displayMost
                 .card-header.mb-2#titleViewMost View Most
-                .card.mb-3
-                    .row.no-gutters
-                        .col-md-4
-                            img.card-img(src='...' alt='...')
-                        .col-md-8
-                            .card-body
-                                h5.card-title Card title
-                                p.card-text
-                                | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                p.card-text
-                                small.text-muted Last updated 3 mins ago
+                each mostItem in most
+                    .card.mb-3
+                        .row.no-gutters
+                            .col-md-4
+                                img.card-img(src= mostItem.firstImage alt='...')
+                            .col-md-8
+                                .card-body
+                                    a.h5.card-title.url(href="/post/view/"+mostItem.url)= mostItem.title
+                                    p.card-text
+                                    | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                    p.card-text
+                                    small.text-muted= mostItem.created

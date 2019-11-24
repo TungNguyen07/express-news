@@ -17,7 +17,7 @@ html
         span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
         ul.navbar-nav.mr-auto
-          li.nav-item.active
+          li.nav-item
             a.nav-link(href='/')
               | Home 
               span.sr-only (current)
@@ -48,7 +48,7 @@ html
                 if user.permission > 0
                   if user.permission == 2
                     a.dropdown-item(href='/users/list-users') Manage Users
-                    a.dropdown-item(href='/post/manage-posts') Manage Post
+                    a.dropdown-item(href='/post/manage-post') Manage Post
                     a.dropdown-item(href='/post/write-news') Post
                   else if user.permission == 1
                     a.dropdown-item(href='/post/write-news') Post

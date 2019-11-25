@@ -18,14 +18,20 @@ function xoa_dau(str) {
     return str.toLowerCase().replace(/ /g,'+');
 }
 
-//show newest post
-module.exports.index = async function(req, res, next){
+function getFirstImageandAndDelete(data){
     let regex = /<img.*?src="(.*?)"/;
-    //get newest post
-    let values = [];
-    let data = await postModel.find({status: true}).sort({created: 1}).limit(10);
     data.forEach(item => item.firstImage = regex.exec(item.content)[1]);
     data.forEach(item => item.url = xoa_dau(item.title));
+    return data;
+}
+
+
+//show newest post
+module.exports.index = async function(req, res, next){
+    
+    //get newest post
+    let data = await postModel.find({status: true}).sort({created: 1}).limit(10);
+    data = getFirstImageandAndDelete(data);
 
     let viewMost = data.sort(function(a,b){
         return b.view - a.view
@@ -43,10 +49,9 @@ module.exports.index = async function(req, res, next){
 //show newest post follow category
 module.exports.indexCategory = async function(req, res){
     let active = req.params.active;
-    let regex = /<img.*?src="(.*?)"/;
     let data = await postModel.find({category: active, status: true}).sort({created: 1}).limit(10);
-    data.forEach(item => item.firstImage = regex.exec(item.content)[1]);
-    data.forEach(item => item.url = xoa_dau(item.title));
+    data = getFirstImageandAndDelete(data);
+
     let viewMost = data.sort(function(a,b){
         return b.view - a.view
     }).slice(0,4);
@@ -104,23 +109,6 @@ module.exports.listPost = async function(req, res){
     });
 }
 
-// //Post with view most follow category
-// module.exports.viewMostCategory = async function(req, res){
-//     //db.getCollection('users').find().sort({"phone":-1}).limit(3);
-//     let category = req.params.active;
-//     let postViewMost = await postModel.find({category: category, status: true}).sort({view: 1}).limit(5);
-//     res.render()
-//     //should be in indexCategory
-// }
-
-// //Post with view most follow category
-// module.exports.viewMostCategory = async function(req, res){
-//     //db.getCollection('users').find().sort({"phone":-1}).limit(3);
-//     let postViewMost = await postModel.find({status: true}).sort({view: 1}).limit(5);
-
-//     //should be in indexCategory
-// }
-
 //approve post
 module.exports.approvePost = function(req, res){
     let id = req.params.id;
@@ -148,8 +136,13 @@ module.exports.denyPost = function(req, res){
 module.exports.view = async function(req, res){
     let id = req.params.id;
     let data = await postModel.find({_id: id});
+    let active = data[0].category;
+    let relative = await postModel.find({category: active, _id: {$ne: id}}).sort({created: 1}).limit(5);
+    relative = getFirstImageandAndDelete(relative);
     res.render('post/view',{
-        post: data[0]
+        post: data[0],
+        relative: relative
     });
+    
     //console.log(); 
 }

@@ -1,39 +1,50 @@
 extends ../layout
 
 block content
-    .card
-        .card-body#view
-            h5.card-title.title= post.title
-            p.card-text!= post.content
-
-            //- .container.col-4#displayMost
-            //-     .card-header.mb-2#titleViewMost View Most
-            //-     each mostItem in most
-            //-         .card.mb-3
-            //-             .row.no-gutters
-            //-                 .col-md-4
-            //-                     img.card-img(src= mostItem.firstImage alt='...')
-            //-                 .col-md-8
-            //-                     .card-body
-            //-                         a.h5.card-title.url(href="")= mostItem.title
-            //-                         p.card-text
-            //-                         | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-            //-                         p.card-text
-            //-                         small.text-muted= mostItem.created
-    .card.mb-3.col-8#post
+    .container-fluid.mb-3#display
+        .card.col-8
+            .card-body#view
+                h5.card-title.title= post.title
+                p.card-text!= post.content
+        .container.col-4.mt-2#displayMost
+            .card-header.mb-2#titleViewMost Relative Post
+                each rel in relative
+                    .card.mb-3
+                        .row.no-gutters
+                            .col-md-4
+                                img.card-img(src= rel.firstImage alt='...')
+                            .col-md-8
+                                .card-body
+                                    a.h5.card-title.url(href="")= rel.title
+                                    p.card-text
+                                    | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                    p.card-text
+                                    small.text-muted= rel.created
+    .card.mb-3.col-6#post
         .container-fluid.mb-3#display
             .container.col-12
                 .row.no-gutters
                     .card-body
                         h5.card-title Commment
                         form.form-group#comment(method='POST')
-                            textarea(name="comment", cols='120', rows="3" style='resize: none')
-                            button.btn.btn-primary(style='display: block') Comment
+                            textarea(name="comment",rows='5' cols='80' style='resize: none')
+                            button.btn.btn-primary Comment
+                        if post.comment
                             each cmt in post.comment
                                 h6= cmt.name
                                 p= cmt.content
-                                button.btn.btn.primary Reply
-                                form.form-group#reply(method='POST')
-                                    textarea(name="reply", cols='100', rows="3" style='resize: none')
-                                    button.btn.btn-primary Reply
-                        
+                                div
+                                    button.btn.btn-primary.rep(id="reply") Reply
+                                form#form1.comment_reply(data-id='', method='post', action='' style="display: none; width: 100%")
+                                    input.hidden(type='hidden', value='')
+                                    textarea#txt.form-control(rows='3', name='post_rep')
+                                    button#submit.btn.btn-primary(type='submit' style='resize: none') Submit
+                        script(type='text/javascript').
+                            $(document).ready(function(){
+                                $(document).on('click' , 'button.rep' , function(){
+                                    var closestDiv = $(this).closest('div');
+                                    $('.comment_reply').not(closestDiv.next('.comment_reply')).hide();
+                                    closestDiv.next('form.comment_reply').slideToggle(100);
+                                });
+                            });
+        

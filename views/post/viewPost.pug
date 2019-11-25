@@ -19,15 +19,15 @@ block content
                                     small.text-muted= item.created
             .container.col-4#displayMost
                 .card-header.mb-2#titleViewMost View Most
-                each mostItem in most
-                    .card.mb-3
-                        .row.no-gutters
-                            .col-md-4
-                                img.card-img(src= mostItem.firstImage alt='...')
-                            .col-md-8
-                                .card-body
-                                    a.h5.card-title.url(href="/post/view/"+mostItem.url)= mostItem.title
-                                    p.card-text
-                                    | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                    p.card-text
-                                    small.text-muted= mostItem.created
+                    each mostItem in most
+                        .card.mb-3
+                            .row.no-gutters
+                                .col-md-4
+                                    img.card-img(src= mostItem.firstImage alt='...')
+                                .col-md-8
+                                    .card-body
+                                        a.h5.card-title.url(href="/post/view/"+mostItem.url)= mostItem.title
+                                        p.card-text
+                                        | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                        p.card-text
+                                        small.text-muted= mostItem.created

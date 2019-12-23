@@ -15,8 +15,8 @@ const checkCookie = require('./middleware/validateLogin');
 
 const app = express();
 
-
-mongoose.connect(process.env.MONGO_URL)
+var url = process.env.MONGO_URL || "mongodb://localhost/express-news";
+mongoose.connect(url)
   .then(()=> {console.log("Database connect sucessfully!")})
   .catch(()=> {console.log("Connect database failed!")})
 // view engine setup

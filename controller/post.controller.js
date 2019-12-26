@@ -53,7 +53,7 @@ module.exports.indexCategory = async function(req, res){
     data = getFirstImageandAndDelete(data);
 
     let viewMost = data.sort(function(a,b){
-        return b.view - a.view
+        return b.view - a.view;
     }).slice(0,4);
 
     
@@ -75,8 +75,12 @@ module.exports.post = async function(req, res){
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     let yyyy = today.getFullYear();
+    let hour = today.getUTCHours() + 7;
+    let minute = today.getUTCMinutes();
+    let second = today.getUTCSeconds();
     
-    let created = mm + '/' + dd + '/' + yyyy;
+    let created = yyyy + '-' + mm + '-' + dd + 'T' + hour + ':' + minute + ':' + second;
+    // let created = new Date();
     postModel.create({
         title: req.body.title,
         category: req.body.category,
@@ -139,10 +143,15 @@ module.exports.view = async function(req, res){
     let active = data[0].category;
     let relative = await postModel.find({category: active, _id: {$ne: id}}).sort({created: 1}).limit(5);
     relative = getFirstImageandAndDelete(relative);
+    
     res.render('post/view',{
         post: data[0],
         relative: relative
     });
-    
+    let query = {$inc: {view: 1}};
+    postModel.updateOne({_id: id}, query, function(err, res){
+        if (err) throw err;
+        console.log('Update successfully');
+    });
     //console.log(); 
 }

@@ -16,8 +16,6 @@ a.nav-link{
   font-size: x-large;
 }
 
-
-
 .user{
   display: inline-block;
 }
@@ -26,6 +24,10 @@ div#sign{
   margin-left: 25%;
   margin-right: 25%;
   margin-bottom: 10%;
+}
+
+textarea{
+  width: 100%;
 }
 
 table.table{

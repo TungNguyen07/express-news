@@ -25,8 +25,8 @@ block content
         .input-group.mb-3
             .input-group-prepend
                 span#basic-addon1.input-group-text Title
-            input.form-control(type='text' aria-describedby='basic-addon1' name="title" value=title ? title : "")    
-        textarea#editor(name="editor" value=editor ? editor : "")
+            input.form-control(type='text' aria-describedby='basic-addon1' name="title")    
+        textarea#editor(name="editor")
         button.btn.btn-primary.mt-2 Post
         script(type='text/javascript').
             $('#editor').summernote({
@@ -35,7 +35,3 @@ block content
                 lang: 'en'
             });
             var cate = document.getElementById('inputGroupSelect01');
-            
-            
-        
-

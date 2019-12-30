@@ -17,4 +17,6 @@ router.get('/deny/:id', validatePermiss.checkPermission, postController.denyPost
 
 router.get('/view/:title/:id', postController.view);
 
+router.get('/review/:id', postController.review);
+
 module.exports = router;

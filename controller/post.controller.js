@@ -75,7 +75,7 @@ module.exports.post = async function(req, res){
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     let yyyy = today.getFullYear();
-    let hour = today.getUTCHours() + 7;
+    let hour = today.getHours() + 7;
     let minute = today.getUTCMinutes();
     let second = today.getUTCSeconds();
     
@@ -154,4 +154,15 @@ module.exports.view = async function(req, res){
         console.log('Update successfully');
     });
     //console.log(); 
+}
+
+//Review post
+module.exports.review = async function(req, res){
+    let id = req.params.id;
+    let data = await postModel.find({_id: id});
+
+    res.render('post/review',{
+        post: data[0]
+    });
+    console.log(data[0]);
 }

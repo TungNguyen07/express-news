@@ -28,9 +28,9 @@ function getFirstImageandAndDelete(data){
 
 //show newest post
 module.exports.index = async function(req, res, next){
-    
+    let cursor = 0;
     //get newest post
-    let data = await postModel.find({status: true}).sort({created: 1}).limit(10);
+    let data = await postModel.find({status: true}).sort({created: 1}).skip(cursor).limit(10);
     data = getFirstImageandAndDelete(data);
 
     let viewMost = data.sort(function(a,b){
@@ -49,7 +49,8 @@ module.exports.index = async function(req, res, next){
 //show newest post follow category
 module.exports.indexCategory = async function(req, res){
     let active = req.params.active;
-    let data = await postModel.find({category: active, status: true}).sort({created: 1}).limit(10);
+    let cursor = 5;
+    let data = await postModel.find({category: active, status: true}).sort({created: 1}).skip(cursor).limit(10);
     data = getFirstImageandAndDelete(data);
 
     let viewMost = data.sort(function(a,b){

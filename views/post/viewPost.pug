@@ -17,6 +17,20 @@ block content
                                     | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                                     p.card-text
                                     small.text-muted= item.created
+                nav#pagination.d-flex.justify-content-center(aria-label='Page navigation example')
+                    ul.pagination
+                        li.page-item
+                            a.page-link(href='#' aria-label='Previous')
+                                span(aria-hidden='true') &laquo;
+                        li.page-item
+                            a.page-link(href='#') 1
+                        li.page-item
+                            a.page-link(href='#') 2
+                        li.page-item
+                            a.page-link(href='#') 3
+                        li.page-item
+                            a.page-link(href='#' aria-label='Next')
+                                span(aria-hidden='true') &raquo;
             .container.col-4#displayMost
                 .card-header.mb-2#titleViewMost View Most
                     each mostItem in most
@@ -31,3 +45,4 @@ block content
                                         | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                                         p.card-text
                                         small.text-muted= mostItem.created
+        

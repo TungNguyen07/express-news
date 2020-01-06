@@ -30,3 +30,46 @@ block content
                         button.btn.btn-primary.ml-2 Save
                 td
                     a.btn.btn-danger.ml-2(href="/users/delete/"+user.id) Delete
+
+    nav#pagination.d-flex.justify-content-center(aria-label='Page navigation example')
+        ul.pagination
+            if page==1 || lengthOfPage==1
+				li.page-item.disabled
+					a.page-link(href="") Previous
+			else
+				li.page-item
+					a.page-link(href="/users/list-users?page=" + (page-1)) Previous
+				li.page-item
+					a.page-link(href="/users/list-users?page=1")= 1
+			if page-2>1
+				li.page-item.disabled
+					a.page-link(href="") ...
+			if page==1 || page==2
+				li.page-item.d-none
+					a.page-link(href="") ...
+			else
+				li.page-item
+					a.page-link(href="/users/list-users?page=" +(page - 1))= (page-1)
+			li.page-item.active
+				span.page-link=(page)
+				span.sr-only
+			if page==lengthOfPage || page==lengthOfPage-1
+				li.page-item.d-none
+					a.page-link(href="") ...
+			else if page<lengthOfPage
+				li.page-item
+					a.page-link(href="/users/list-users?page=" +(page + 1))= (page+1)
+			if page+2<lengthOfPage
+				li.page-item.disabled
+					a.page-link(href="") ...
+			else
+				li.page-item.d-none
+					a.page-link(href="")
+			if page==lengthOfPage || lengthOfPage==1
+				li.page-item.disabled
+					a.page-link(href="") Next
+			else
+				li.page-item
+					a.page-link(href="/users/list-users?page=" +(lengthOfPage))= lengthOfPage
+				li.page-item
+					a.page-link(href="/users/list-users?page=" + (page+1)) Next

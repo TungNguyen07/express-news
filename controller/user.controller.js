@@ -74,15 +74,16 @@ module.exports.changeInfo = async function(req, res, next){
 module.exports.listUsers = async function(req, res){
     let page = parseInt(req.query.page) || 1;
     let users = await userModel.find({}).skip(page-1).limit(5);
-    let lengthOfPage = Math.ceil((await userModel.find()).length / 5);
+    let length = Math.ceil((await userModel.find()).length / 5);
     res.render('users/listUsers',{
         users: users,
         page: page,
-        lengthOfPage: lengthOfPage,
+        length: length,
     });
+    
     console.log(users);
     console.log(page);
-    console.log(lengthOfPage);
+    console.log(length);
 }
 
 //Search Users

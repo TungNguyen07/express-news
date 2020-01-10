@@ -1,75 +1,74 @@
 extends ../layout
 
 block content
-    h1(style="text-align: center;") List Users
-    .d-flex.align-items-center
-        form.ml-auto.d-flex.mb-0(action="/users/search" method="GET")
-            input.form-control(type="text" name="q" class="mr-2" value=q ? q : "")
-            button.btn.btn-primary.mb-2 Search
-    if errors
-        each error in errors
-            .alert.alert-danger(style="text-align: center; font-size: 20px;")= error
-    table.table
-        tr
-            th Name
-            th Phone
-            th Email
-            th Username
-            th(style="padding-left: 7%;") Permission
-            th Action
+	h1(style="text-align: center;") List Users
+	.d-flex.align-items-center
+		form.ml-auto.d-flex.mb-0(action="/users/search" method="GET")
+			input.form-control(type="text" name="q" class="mr-2" value=q ? q : "")
+			button.btn.btn-primary.mb-2 Search
+	if errors
+		each error in errors
+			.alert.alert-danger(style="text-align: center; font-size: 20px;")= error
+	table.table
+		tr
+			th Name
+			th Phone
+			th Email
+			th Username
+			th(style="padding-left: 7%;") Permission
+			th Action
 
-        each user in users
-            tr
-                td= user.name
-                td= user.phone
-                td= user.email
-                td= user.username
-                td
-                    form#permission(action="/users/change-permission/"+user.id method="POST")
-                        input.form-control(type="number" name="permission" max="2" min="0" value=user.permission)
-                        button.btn.btn-primary.ml-2 Save
-                td
-                    a.btn.btn-danger.ml-2(href="/users/delete/"+user.id) Delete
+		each user in users
+			tr
+				td= user.name
+				td= user.phone
+				td= user.email
+				td= user.username
+				td
+					form#permission(action="/users/change-permission/"+user.id method="POST")
+						input.form-control(type="number" name="permission" max="2" min="0" value=user.permission)
+						button.btn.btn-primary.ml-2 Save
+				td
+					a.btn.btn-danger.ml-2(href="/users/delete/"+user.id) Delete
 
-    nav#pagination.d-flex.justify-content-center(aria-label='Page navigation example')
-        ul.pagination
-            if page==1 || lengthOfPage==1
+	nav#pagination.d-flex.justify-content-center(aria-label='Page navigation example')
+		ul.pagination
+			if (page == 1)
 				li.page-item.disabled
-					a.page-link(href="") Previous
-			else
-				li.page-item
-					a.page-link(href="/users/list-users?page=" + (page-1)) Previous
-				li.page-item
-					a.page-link(href="/users/list-users?page=1")= 1
-			if page-2>1
-				li.page-item.disabled
-					a.page-link(href="") ...
-			if page==1 || page==2
+					a.page-link(href='#') Previous
 				li.page-item.d-none
-					a.page-link(href="") ...
+					a.page-link(href='/users/list-users?page=1') 1
 			else
 				li.page-item
-					a.page-link(href="/users/list-users?page=" +(page - 1))= (page-1)
+					a.page-link(href='/users/list-users?page=' + (page - 1)) Previous
+				li.page-item
+					a.page-link(href='/users/list-users?page=1') 1
+			if (page - 2 >1)
+				li.page-item.disabled
+					a.page-link(href='#') ...
+			
+			if (page >=3)
+				li.page-item
+					a.page-link(href='/users/list-users?page=' + (page -1))= page-1
 			li.page-item.active
 				span.page-link=(page)
 				span.sr-only
-			if page==lengthOfPage || page==lengthOfPage-1
-				li.page-item.d-none
-					a.page-link(href="") ...
-			else if page<lengthOfPage
+			if (page <= (length - 2))
 				li.page-item
-					a.page-link(href="/users/list-users?page=" +(page + 1))= (page+1)
-			if page+2<lengthOfPage
+					a.page-link(href='/users/list-users?page=' + (page + 1))= page+1
+			
+			if (page + 2 < length)
 				li.page-item.disabled
-					a.page-link(href="") ...
+					a.page-link(href='#') ...
+			
+			if (page < length)
+				li.page-item
+					a.page-link(href='/users/list-users?page=' + length)= length
+				li.page-item
+					a.page-link(href='/users/list-users?page=' + (page + 1)) Next
 			else
 				li.page-item.d-none
-					a.page-link(href="")
-			if page==lengthOfPage || lengthOfPage==1
+					a.page-link(href='/users/list-users?page=' + length)= length
 				li.page-item.disabled
-					a.page-link(href="") Next
-			else
-				li.page-item
-					a.page-link(href="/users/list-users?page=" +(lengthOfPage))= lengthOfPage
-				li.page-item
-					a.page-link(href="/users/list-users?page=" + (page+1)) Next
+					a.page-link(href='/users/list-users?page=' + (page + 1)) Next
+				

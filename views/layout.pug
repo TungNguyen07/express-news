@@ -47,7 +47,7 @@ html
               .dropdown-menu.dropdown-menu-right(aria-labelledby='dropdownMenuButton')
                 if user.permission > 0
                   if user.permission == 2
-                    a.dropdown-item(href='/users/list-users') Manage Users
+                    a.dropdown-item(href='/users/list-users?page=1') Manage Users
                     a.dropdown-item(href='/post/manage-post') Manage Post
                     a.dropdown-item(href='/post/write-news') Post
                   else if user.permission == 1

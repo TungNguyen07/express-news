@@ -15,7 +15,7 @@ block content
 			th Phone
 			th Email
 			th Username
-			th(style="padding-left: 7%;") Permission
+			th Permission
 			th Action
 
 		each user in users
@@ -46,7 +46,7 @@ block content
 			if (page - 2 >1)
 				li.page-item.disabled
 					a.page-link(href='#') ...
-			
+
 			if (page >=3)
 				li.page-item
 					a.page-link(href='/users/list-users?page=' + (page -1))= page-1
@@ -56,11 +56,11 @@ block content
 			if (page <= (length - 2))
 				li.page-item
 					a.page-link(href='/users/list-users?page=' + (page + 1))= page+1
-			
+
 			if (page + 2 < length)
 				li.page-item.disabled
 					a.page-link(href='#') ...
-			
+
 			if (page < length)
 				li.page-item
 					a.page-link(href='/users/list-users?page=' + length)= length
@@ -71,4 +71,3 @@ block content
 					a.page-link(href='/users/list-users?page=' + length)= length
 				li.page-item.disabled
 					a.page-link(href='/users/list-users?page=' + (page + 1)) Next
-				

@@ -16,35 +16,34 @@ block content
                             .col-md-8
                                 .card-body
                                     a.h5.card-title.url(href="")= rel.title
-                                    p.card-text
-                                    | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                    p.card-text= rel.summary
                                     p.card-text
                                     small.text-muted= rel.created
-    .card.mb-3.col-6#post
-        .container-fluid.mb-3#display
-            .container.col-12
-                .row.no-gutters
-                    .card-body
-                        h5.card-title Commment
-                        form.form-group#comment(method='POST')
-                            textarea(name="comment",rows='5' cols='80' style='resize: none')
-                            button.btn.btn-primary Comment
-                        if post.comment
-                            each cmt in post.comment
-                                h6= cmt.name
-                                p= cmt.content
-                                div
-                                    button.btn.btn-primary.rep(id="reply") Reply
-                                form#form1.comment_reply(data-id='', method='post', action='' style="display: none; width: 100%")
-                                    input.hidden(type='hidden', value='')
-                                    textarea#txt.form-control(rows='3', name='post_rep')
-                                    button#submit.btn.btn-primary(type='submit' style='resize: none') Submit
-                        script(type='text/javascript').
-                            $(document).ready(function(){
-                                $(document).on('click' , 'button.rep' , function(){
-                                    var closestDiv = $(this).closest('div');
-                                    $('.comment_reply').not(closestDiv.next('.comment_reply')).hide();
-                                    closestDiv.next('form.comment_reply').slideToggle(100);
-                                });
+
+    .container-fluid.mb-3#display
+        .container.col-12
+            .row.no-gutters
+                .card-body.col-8
+                    h5.card-title Commment
+                    form.form-group#comment(method='POST')
+                        textarea(name="comment" rows='5' cols='80' style='resize: none')
+                        button.btn.btn-primary Comment
+                    if post.comment
+                        each cmt in post.comment
+                            h6= cmt.name
+                            p= cmt.content
+                            div
+                                button.btn.btn-primary.rep(id="reply") Reply
+                            form#form1.comment_reply(data-id='' method='post' action='' style="display: none; width: 100%")
+                                input.hidden(type='hidden' value='')
+                                textarea#txt.form-control(rows='3' name='post_rep')
+                                button#submit.btn.btn-primary(type='submit' style='resize: none') Submit
+                    script(type='text/javascript').
+                        $(document).ready(function(){
+                            $(document).on('click' , 'button.rep' , function(){
+                                var closestDiv = $(this).closest('div');
+                                $('.comment_reply').not(closestDiv.next('.comment_reply')).hide();
+                                closestDiv.next('form.comment_reply').slideToggle(100);
                             });
-        
+                        });
+

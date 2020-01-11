@@ -3,34 +3,34 @@ body {
   text-align: center;
 }
 
-a.navbar-brand{
+a.navbar-brand {
   margin-left: 5%;
 }
 
-a.navbar-brand#brand{
+a.navbar-brand#brand {
   margin-left: 0%;
   font-size: xx-large;
 }
 
-a.nav-link{
+a.nav-link {
   font-size: x-large;
 }
 
-.user{
+.user {
   display: inline-block;
 }
 
-div#sign{
+div#sign {
   margin-left: 25%;
   margin-right: 25%;
   margin-bottom: 10%;
 }
 
-textarea{
+textarea {
   width: 100%;
 }
 
-table.table{
+table.table {
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;
@@ -49,17 +49,18 @@ form {
 
 /*id property*/
 form#postEditor {
-  padding: 15%; 
+  padding: 15%;
   padding-top: 2%;
   padding-bottom: 5%;
 }
 
 #permission {
   display: flex;
+  padding-left: 0%;
 }
 
 #post {
-  margin-left: 5%;
+  margin-left: 0%;
   margin-right: 5%;
 }
 
@@ -72,7 +73,7 @@ form#postEditor {
   font-weight: bold;
 }
 
-#view{
+#view {
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -82,8 +83,7 @@ form#postEditor {
   padding-right: 0%;
 }
 
-
-.title{
+.title {
   font-size: xx-large;
 }
 
@@ -96,58 +96,57 @@ form#postEditor {
   text-decoration: none;
 }
 
-.card-img{
+.card-img {
   margin: 0.5em;
 }
 
-.footer{
-  background-color:black;
+.footer {
+  background-color: black;
   float: none;
   width: 100%;
-  padding:10px;
+  padding: 10px;
   position: absolute;
 }
 
-.footer footer{
-  color:white;   
+.footer footer {
+  color: white;
 }
 
-.footer div{
+.footer div {
   margin-left: 5%;
 }
 
-.footer div ul{
+.footer div ul {
   width: 100%;
 }
 
-.footer div ul li{
+.footer div ul li {
   float: left;
   display: block;
   width: 27%;
   margin-right: 5%;
 }
 
-.footer div ul li h1{
+.footer div ul li h1 {
   font-size: 20px;
   padding-bottom: 5px;
 }
 
-.footer div ul li a{
+.footer div ul li a {
   color: white;
   text-decoration: none;
   padding-bottom: 3px;
 }
 
-.footer div ul li a:hover{
+.footer div ul li a:hover {
   text-decoration: underline;
 }
 
-.footer div ul li hr{
-  border: 0.5px dotted rgb(150, 150, 150) ;
+.footer div ul li hr {
+  border: 0.5px dotted rgb(150, 150, 150);
 }
 
-.footer div ul li p{
+.footer div ul li p {
   padding-top: 3px;
   padding-bottom: 3px;
 }
-

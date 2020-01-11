@@ -13,24 +13,10 @@ block content
                             .col-md-8
                                 .card-body
                                     a.h5.card-title.url(href="/post/view/"+item.url+'/'+item._id)= item.title
-                                    p.card-text
-                                    | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                    p.card-text= item.summary
                                     p.card-text
                                     small.text-muted= item.created
-                nav#pagination.d-flex.justify-content-center(aria-label='Page navigation example')
-                    ul.pagination
-                        li.page-item
-                            a.page-link(href='#' aria-label='Previous')
-                                span(aria-hidden='true') &laquo;
-                        li.page-item
-                            a.page-link(href='#') 1
-                        li.page-item
-                            a.page-link(href='#') 2
-                        li.page-item
-                            a.page-link(href='#') 3
-                        li.page-item
-                            a.page-link(href='#' aria-label='Next')
-                                span(aria-hidden='true') &raquo;
+
             .container.col-4#displayMost
                 .card-header.mb-2#titleViewMost View Most
                     each mostItem in most
@@ -41,8 +27,46 @@ block content
                                 .col-md-8
                                     .card-body
                                         a.h5.card-title.url(href="/post/view/"+mostItem.url+'/'+mostItem._id)= mostItem.title
-                                        p.card-text
-                                        | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                        p.card-text= mostItem.summary
                                         p.card-text
                                         small.text-muted= mostItem.created
-        
+    nav#pagination.d-flex.justify-content-center(aria-label='Page navigation example')
+        ul.pagination
+            if (page == 1)
+                li.page-item.disabled
+                    a.page-link(href='#') Previous
+                li.page-item.d-none
+                    a.page-link(href='/'+active.toLowerCase()+'?page=1') 1
+            else
+                li.page-item
+                    a.page-link(href='/'+active.toLowerCase()+'?page=' + (page - 1)) Previous
+                //- li.page-item
+                //-     a.page-link(href='/'+active.toLowerCase()+'?page=1') 1
+            if (page - 1 >1)
+                li.page-item.disabled
+                    a.page-link(href='#') ...
+
+            //- if (page >=3)
+            //-     li.page-item
+            //-         a.page-link(href='/'+active+'?page=' + (page -1))= page-1
+            li.page-item.active
+                span.page-link=(page)
+                span.sr-only
+            //- if (page <= (length - 2))
+            //-     li.page-item
+            //-         a.page-link(href='/'+active+'?page=' + (page + 1))= page+1
+
+            if (page + 1 < length)
+                li.page-item.disabled
+                    a.page-link(href='#') ...
+
+            if (page < length)
+                //- li.page-item
+                //-     a.page-link(href='/'+active+'?page=' + length)= length
+                li.page-item
+                    a.page-link(href='/'+active.toLowerCase()+'?page=' + (page + 1)) Next
+            else
+                //- li.page-item.d-none
+                //-     a.page-link(href='/'+active.toLowerCase()+'?page=' + length)= length
+                li.page-item.disabled
+                    a.page-link(href='/'+active.toLowerCase()+'?page=' + (page + 1)) Next

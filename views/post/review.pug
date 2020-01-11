@@ -6,5 +6,6 @@ block content
             .card-body#view
                 h5.card-title.title= post.title
                 p.card-text!= post.content
-        a.btn.btn-primary.ml-2(href="/post/approve/"+item._id) Approve
-        a.btn.btn-danger.ml-2(href="/post/deny/"+item._id) Deny
+    .card.col-2.justify-content-center.ml-5
+        a.btn.btn-primary.ml-2.mb-2.mt-2(href="/post/approve/"+post._id) Approve
+        a.btn.btn-danger.ml-2.mb-2(href="/post/deny/"+post._id) Deny

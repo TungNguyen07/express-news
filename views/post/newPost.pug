@@ -25,7 +25,11 @@ block content
         .input-group.mb-3
             .input-group-prepend
                 span#basic-addon1.input-group-text Title
-            input.form-control(type='text' aria-describedby='basic-addon1' name="title")    
+            input.form-control(type='text' aria-describedby='basic-addon1' name="title")
+        .input-group.mb-3
+            .input-group-prepend
+                span.input-group-text Summary
+            textarea.form-control(name="summary" style="resize: none;") 
         textarea#editor(name="editor")
         button.btn.btn-primary.mt-2 Post
         script(type='text/javascript').

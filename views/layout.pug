@@ -5,7 +5,7 @@ html
     link(rel='stylesheet' href='/stylesheets/style.css')
     link(rel="stylesheet" href="/stylesheets/bootstrap.min.css")
     script(src="/javascripts/jquery-3.3.1.slim.min.js")
-    link(href='https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css', rel='stylesheet')
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css' rel='stylesheet')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js')
   body
     nav.navbar.navbar-expand-lg.navbar-light.bg-light 
@@ -43,7 +43,7 @@ html
             a.nav-link(href='/tech') Tech
           if user
             .dropdown.user.ml-3.mt-2
-              button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')= user.name
+              button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' style="max-width: 3rem;")= user.name
               .dropdown-menu.dropdown-menu-right(aria-labelledby='dropdownMenuButton')
                 if user.permission > 0
                   if user.permission == 2

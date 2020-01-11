@@ -1,26 +1,33 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-let postSchema = mongoose.Schema({
+let postSchema = mongoose.Schema(
+  {
     category: String,
+    summary: String,
     content: String,
     title: String,
     author: String,
     created: Date,
-    view: {type: Number, default: 0},
-    status: {type: Boolean, default: false},
-    comment: [{
+    view: { type: Number, default: 0 },
+    status: { type: Boolean, default: false },
+    comment: [
+      {
         name: String,
         content: String,
         written: Date,
-        reply: [{
+        reply: [
+          {
             name: String,
             content: String,
             written: Date
-        }]
-    }]
-    },
-    {versionKey: false})
+          }
+        ]
+      }
+    ]
+  },
+  { versionKey: false }
+);
 
-let posts = mongoose.model('post', postSchema);
+let posts = mongoose.model("post", postSchema);
 
 module.exports = posts;

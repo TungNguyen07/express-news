@@ -1,19 +1,22 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 // const bcrypt = require('bcryptjs');
-import bcrypt from 'bcryptjs';
+import bcrypt from "bcryptjs";
 
-let userSchema = mongoose.Schema({
+let userSchema = mongoose.Schema(
+  {
     username: String,
     password: String,
     phone: String,
     email: String,
     name: String,
-    permission: {type: Number, default: 0},
-    })
+    permission: { type: Number, default: 0 }
+  },
+  { versionKey: false }
+);
 
-userSchema.pre('save', function(next) {
+userSchema.pre("save", function(next) {
   var user = this;
-  if (this.isModified('password') || this.isNew) {
+  if (this.isModified("password") || this.isNew) {
     bcrypt.genSalt(10, function(err, salt) {
       if (err) {
         return next(err);
@@ -43,6 +46,6 @@ userSchema.methods.comparePassword = function(password) {
   }
 };
 
-let users = mongoose.model('users', userSchema);
+let users = mongoose.model("users", userSchema);
 
 module.exports = users;

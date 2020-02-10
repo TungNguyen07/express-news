@@ -60,7 +60,7 @@ form#postEditor {
 }
 
 #post {
-  margin-left: 0%;
+  margin-left: 5%;
   margin-right: 5%;
 }
 
@@ -83,6 +83,11 @@ form#postEditor {
   padding-right: 0%;
 }
 
+#txt {
+  font-size: medium;
+  width: 100%;
+}
+
 .title {
   font-size: xx-large;
 }
@@ -98,55 +103,4 @@ form#postEditor {
 
 .card-img {
   margin: 0.5em;
-}
-
-.footer {
-  background-color: black;
-  float: none;
-  width: 100%;
-  padding: 10px;
-  position: absolute;
-}
-
-.footer footer {
-  color: white;
-}
-
-.footer div {
-  margin-left: 5%;
-}
-
-.footer div ul {
-  width: 100%;
-}
-
-.footer div ul li {
-  float: left;
-  display: block;
-  width: 27%;
-  margin-right: 5%;
-}
-
-.footer div ul li h1 {
-  font-size: 20px;
-  padding-bottom: 5px;
-}
-
-.footer div ul li a {
-  color: white;
-  text-decoration: none;
-  padding-bottom: 3px;
-}
-
-.footer div ul li a:hover {
-  text-decoration: underline;
-}
-
-.footer div ul li hr {
-  border: 0.5px dotted rgb(150, 150, 150);
-}
-
-.footer div ul li p {
-  padding-top: 3px;
-  padding-bottom: 3px;
 }

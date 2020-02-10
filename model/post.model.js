@@ -9,21 +9,7 @@ let postSchema = mongoose.Schema(
     author: String,
     created: Date,
     view: { type: Number, default: 0 },
-    status: { type: Boolean, default: false },
-    comment: [
-      {
-        name: String,
-        content: String,
-        written: Date,
-        reply: [
-          {
-            name: String,
-            content: String,
-            written: Date
-          }
-        ]
-      }
-    ]
+    status: { type: Boolean, default: false }
   },
   { versionKey: false }
 );

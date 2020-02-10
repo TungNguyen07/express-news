@@ -1,49 +1,82 @@
 extends ../layout
 
 block content
-    .container-fluid.mb-3#display
-        .card.col-8
-            .card-body#view
-                h5.card-title.title= post.title
-                p.card-text!= post.content
-        .container.col-4.mt-2#displayMost
-            .card-header.mb-2#titleViewMost Relative Post
-                each rel in relative
-                    .card.mb-3
-                        .row.no-gutters
-                            .col-md-4
-                                img.card-img(src= rel.firstImage alt='...')
-                            .col-md-8
-                                .card-body
-                                    a.h5.card-title.url(href="")= rel.title
-                                    p.card-text= rel.summary
-                                    p.card-text
-                                    small.text-muted= rel.created
+  .container-fluid.mb-3#display
+    .container.col-8
+      .card-body.mb-5#view
+        h5.card-title.title= post.title
+        p.card-text.d-flex.justify-content-start
+          small.text-muted.mt-3= post.author + ' - ' + post.created
+        p.card-text!= post.content
 
-    .container-fluid.mb-3#display
-        .container.col-12
+      .card-body
+        h5.card-header.title(style="display: table;") Comment
+          form.form-group.mt-3#comment(method='POST')
+            textarea#cmt(name="comment" rows='5' cols='80' style='resize: none')
+            button.btn.btn-primary Comment
+          if comment
+            each cmt in comment
+              h6= cmt.owner
+              p= cmt.comment
+
+              each rep in cmt.reply
+                h6.ml-5= rep.owner
+                p.ml-5= rep.repComment
+              div
+                button.btn.btn-primary.rep.mb-2(id="reply") Reply
+              form#form1.comment_reply(data-id='' method='post' style="display: none; width: 100%")
+                input.hidden(type='hidden' value='')
+                input(type="hidden" name="commentID" value= cmt._id)
+                textarea#txt.form-control.mb-2(name='post_rep')
+                button#submit.btn.btn-primary.d-flex.justify-content-end(type='submit' style='resize: none') Submit
+
+          script(type='text/javascript').
+            $(document).ready(function(){
+              $(document).on('click' , 'button.rep' , function(){
+                var closestDiv = $(this).closest('div');
+                $('.comment_reply').not(closestDiv.next('.comment_reply')).hide();
+                closestDiv.next('form.comment_reply').slideToggle(100);
+              });
+            });
+
+    .container.col-4.mt-2#displayMost
+      .card-header#titleViewMost Relative Post
+        each rel in relative
+          .card.mb-3
             .row.no-gutters
-                .card-body.col-8
-                    h5.card-title Commment
-                    form.form-group#comment(method='POST')
-                        textarea(name="comment" rows='5' cols='80' style='resize: none')
-                        button.btn.btn-primary Comment
-                    if post.comment
-                        each cmt in post.comment
-                            h6= cmt.name
-                            p= cmt.content
-                            div
-                                button.btn.btn-primary.rep(id="reply") Reply
-                            form#form1.comment_reply(data-id='' method='post' action='' style="display: none; width: 100%")
-                                input.hidden(type='hidden' value='')
-                                textarea#txt.form-control(rows='3' name='post_rep')
-                                button#submit.btn.btn-primary(type='submit' style='resize: none') Submit
-                    script(type='text/javascript').
-                        $(document).ready(function(){
-                            $(document).on('click' , 'button.rep' , function(){
-                                var closestDiv = $(this).closest('div');
-                                $('.comment_reply').not(closestDiv.next('.comment_reply')).hide();
-                                closestDiv.next('form.comment_reply').slideToggle(100);
-                            });
-                        });
+              .col-md-4
+                img.card-img(src= rel.firstImage alt='...')
+              .col-md-8
+                .card-body
+                  a.h5.card-title.url(href="")= rel.title
+                  p.card-text(style="font-size: medium; font-weight: normal;")= rel.summary + '...' 
+                  p.card-text
+                  small.text-muted= rel.created
+
+  //- .container-fluid.mb-3#display
+  //-     .container.col-12
+  //-         .row.no-gutters
+  //-             .card-body.col-8
+  //-                 h5.card-title Commment
+  //-                 form.form-group#comment(method='POST')
+  //-                     textarea(name="comment" rows='5' cols='80' style='resize: none')
+  //-                     button.btn.btn-primary Comment
+  //-                 if post.comment
+  //-                     each cmt in post.comment
+  //-                         h6= cmt.name
+  //-                         p= cmt.content
+  //-                         div
+  //-                             button.btn.btn-primary.rep(id="reply") Reply
+  //-                         form#form1.comment_reply(data-id='' method='post' action='' style="display: none; width: 100%")
+  //-                             input.hidden(type='hidden' value='')
+  //-                             textarea#txt.form-control(rows='3' name='post_rep')
+  //-                             button#submit.btn.btn-primary(type='submit' style='resize: none') Submit
+  //-                 script(type='text/javascript').
+  //-                     $(document).ready(function(){
+  //-                         $(document).on('click' , 'button.rep' , function(){
+  //-                             var closestDiv = $(this).closest('div');
+  //-                             $('.comment_reply').not(closestDiv.next('.comment_reply')).hide();
+  //-                             closestDiv.next('form.comment_reply').slideToggle(100);
+  //-                         });
+  //-                     });
 

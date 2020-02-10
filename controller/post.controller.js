@@ -1,4 +1,6 @@
 const postModel = require("../model/post.model");
+import { getCommentFollowIdPost } from "../controller/comment.controller";
+import userModel from "../model/user.model";
 
 function xoa_dau(str) {
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
@@ -25,6 +27,20 @@ function getFirstImageandAndDelete(data) {
   return data;
 }
 
+function getCurrentDateTime() {
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  let yyyy = today.getFullYear();
+  let hour = today.getHours();
+  let minute = today.getUTCMinutes();
+  let second = today.getUTCSeconds();
+
+  let created =
+    yyyy + "-" + mm + "-" + dd + "T" + hour + ":" + minute + ":" + second;
+  return created;
+}
+
 //show newest post
 module.exports.index = async function(req, res, next) {
   //let page = req.query.page || 1;
@@ -34,12 +50,16 @@ module.exports.index = async function(req, res, next) {
     .sort({ created: 1 })
     .limit(20);
   data = getFirstImageandAndDelete(data);
-  //let length = await postModel.count();
+
   let viewMost = data
     .sort(function(a, b) {
       return b.view - a.view;
     })
     .slice(0, 4);
+
+  viewMost.forEach(function(item) {
+    if (item.summary.length > 80) item.summary = item.summary.slice(0, 80);
+  });
 
   res.render("post/viewPost", {
     post: data,
@@ -53,11 +73,7 @@ module.exports.index = async function(req, res, next) {
 module.exports.indexCategory = async function(req, res) {
   let active = req.params.active;
   let page = parseInt(req.query.page) || 1;
-  let length = await postModel.find({ category: active, status: true }).count();
-
-  console.log("ali: ", page);
-  console.log("baba: ", length);
-  console.log(active);
+  let length = Math.ceil((await postModel.countDocuments()) / 10);
 
   let data = await postModel
     .find({ category: active, status: true })
@@ -71,6 +87,10 @@ module.exports.indexCategory = async function(req, res) {
       return b.view - a.view;
     })
     .slice(0, 4);
+
+  viewMost.forEach(item => {
+    if (item.summary.length > 80) item.summary = item.summary.slice(0, 80);
+  });
 
   active = active.charAt(0).toUpperCase() + active.slice(1);
 
@@ -88,17 +108,7 @@ module.exports.indexCategory = async function(req, res) {
 
 //Insert post
 module.exports.post = async function(req, res) {
-  let today = new Date();
-  let dd = String(today.getDate()).padStart(2, "0");
-  let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-  let yyyy = today.getFullYear();
-  let hour = today.getHours() + 7;
-  let minute = today.getUTCMinutes();
-  let second = today.getUTCSeconds();
-
-  let created =
-    yyyy + "-" + mm + "-" + dd + "T" + hour + ":" + minute + ":" + second;
-  // let created = new Date();
+  let created = getCurrentDateTime();
   //console.log(req.body.summary);
   postModel.create({
     title: req.body.title,
@@ -118,7 +128,7 @@ module.exports.write = function(req, res) {
   });
 };
 
-//List of unread post
+//List of unapproved post
 module.exports.listPost = async function(req, res) {
   let data = await postModel.find({ status: false });
   let errors = [];
@@ -166,16 +176,23 @@ module.exports.view = async function(req, res) {
     .limit(5);
   relative = getFirstImageandAndDelete(relative);
 
+  relative.forEach(item => {
+    if (item.summary.length > 80) item.summary = item.summary.slice(0, 80);
+  });
+
+  //get comment
+  const cmt = await getCommentFollowIdPost(id);
+
   res.render("post/view", {
     post: data[0],
-    relative: relative
+    relative: relative,
+    comment: cmt
   });
   let query = { $inc: { view: 1 } };
   postModel.updateOne({ _id: id }, query, function(err, res) {
     if (err) throw err;
     console.log("Update successfully");
   });
-  //console.log();
 };
 
 //Review post

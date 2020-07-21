@@ -1,2 +1,2 @@
 # express-news
-My first news website which made with mongodb and express
+My first news site was made with mongodb and express
